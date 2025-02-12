@@ -1,4 +1,4 @@
-from othello import *
+from src.othello import *
 
 def test_finds_flips():
     board = ('........',
