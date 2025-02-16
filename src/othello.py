@@ -79,8 +79,14 @@ def score(board):
     :return: The difference between the number of pieces 'X' has and the number 'O' has. This is therefore positive if
     'X' is winning, negative if 'O' is winning, and 0 if the score is tied.
     """
-    # TODO You have to write this one
-    pass  # Start by removing this line, which is just here so that the code is valid Python
+    s = 0
+    for r in range(8):
+        for c in range(8):
+            if board[r][c] == 'X':
+                s += 1
+            if board[r][c] == 'O':
+                s -= 1
+    return s
 
 
 def opposite(player):
