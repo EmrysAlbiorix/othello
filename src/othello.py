@@ -1,5 +1,6 @@
 # Team members who contributed to this project:
-#
+# Fionn Ensor-McDermott
+# Ben Eichel
 
 INITIAL_STATE = ('........',) * 3 + ('...XO...', '...OX...') + ('........',) * 3
 
