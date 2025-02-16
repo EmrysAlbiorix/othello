@@ -102,8 +102,27 @@ def value(board, player, depth):
     :param depth: At least 1; greater depth is slower but smarter
     :return: The value of board if it is player's turn
     """
-    # TODO You have to write this one
-    pass  # Start by removing this line, which is just here so that the code is valid Python
+    if legal_moves(board, 'X') == legal_moves(board, 'O') == 'pass':
+        return score(board)
+    if depth == 0:
+        return score(board)
+    best_value = 0
+    if player == 'X':
+        best_value = -100
+    if player == 'O':
+        best_value = 100
+    for m in legal_moves(board, player):
+        s = successor(board, player, m)
+        if player == 'X':
+            v = value(s, 'O', depth - 1)
+            if v > best_value:
+                best_value = v
+        if player == 'O':
+            v = value(s, 'X', depth - 1)
+            if v < best_value:
+                best_value = v
+    return best_value
+
 
 
 def less(x, y):
