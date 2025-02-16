@@ -64,7 +64,7 @@ def legal_moves(board, player):
                     game_over = False
                     result.append(here)
                 # The inclusion of game_over in the condition below is for efficiency:
-                # If it has already been determined that the game is not over, there's not need to check
+                # If it has already been determined that the game is not over, there's no need to check
                 # for opposing legal moves
                 elif game_over and flips(board, opposite(player), here):
                     game_over = False
@@ -140,8 +140,25 @@ def best_move(board, player, depth):
     :param depth: At least 1; greater depth is slower but smarter
     :return: The best move (index) for player
     """
-    # TODO You have to write this one
-    pass  # Start by removing this line, which is just here so that the code is valid Python
+    best_move = None
+    best_value = 0
+    if player == 'X':
+        best_value = -100
+    if player == 'O':
+        best_value = 100
+    for m in legal_moves(board, player):
+        s = successor(board, player, m)
+        if player == 'X':
+            v = value(s, 'O', depth - 1)
+            if v > best_value:
+                best_value = v
+                best_move = m
+        if player == 'O':
+            v = value(s, 'X', depth - 1)
+            if v < best_value:
+                best_value = v
+                best_move = m
+    return best_move
 
 
 def print_board(board):
